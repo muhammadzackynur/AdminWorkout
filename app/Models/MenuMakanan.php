@@ -11,6 +11,7 @@ class MenuMakanan extends Model
 
     protected $fillable = [
         'nama_makanan',
+        'kategori',
         'kalori',
         'deskripsi',
         'bahan',

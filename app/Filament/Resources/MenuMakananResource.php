@@ -8,6 +8,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select; // Import Select
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -33,6 +34,15 @@ class MenuMakananResource extends Resource
                     ->numeric()
                     ->required(),
 
+                // Add the Select component for 'kategori'
+                Select::make('kategori')
+                    ->label('Kategori')
+                    ->options([
+                        'Bulking (Penambah Massa Otot)' => 'Bulking (Penambah Massa Otot)',
+                        'Cutting / Diet (Penurunan Lemak Tubuh)' => 'Cutting / Diet (Penurunan Lemak Tubuh)',
+                    ])
+                    ->required(), // Make it required if a category must be selected
+
                 Textarea::make('deskripsi')
                     ->label('Deskripsi')
                     ->nullable(),
@@ -56,8 +66,9 @@ class MenuMakananResource extends Resource
             ->columns([
                 TextColumn::make('nama_makanan')->label('Nama Makanan')->sortable()->searchable(),
                 TextColumn::make('kalori')->label('Kalori')->sortable(),
+                TextColumn::make('kategori')->label('Kategori')->sortable()->searchable(), // Add Kategori column
                 TextColumn::make('deskripsi')->label('Deskripsi')->limit(50),
-                TextColumn::make('bahan')->label('Bahan')->limit(50), // ✅ Tambahan kolom bahan
+                TextColumn::make('bahan')->label('Bahan')->limit(50),
                 ImageColumn::make('image')
                     ->label('Gambar')
                     ->disk('public') // storage/app/public

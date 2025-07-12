@@ -13,11 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Baris ini akan membuat satu pengguna spesifik
+        User::create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password') // Ganti dengan password yang aman
         ]);
+
+        // Anda juga bisa membuat 10 pengguna acak menggunakan factory
+        // User::factory(10)->create();
     }
 }
